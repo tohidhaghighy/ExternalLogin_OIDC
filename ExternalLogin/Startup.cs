@@ -48,16 +48,13 @@ namespace ExternalLogin
                 displayName: "Google",
                 options =>
                 {
-                    options.Authority = "https://accounts.google.com/";
-                    options.ClientId = "415071693822-8p89pviupfg7glnjequ9kpl05a0pp696.apps.googleusercontent.com";
-
-                    // Change the callback path to match the google app configuration
-                    //options.CallbackPath = "/Home/external-login";
-                    //options.ClientSecret = "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";
+                    options.Authority = "https://accounts.google.com";
+                    options.ClientId = "415071693822-8p89pviupfg7glnjequ9kpl05a0pp696.apps.googleusercontent.com";;
+                    options.ClientSecret = "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";
+                    options.CallbackPath = "/Home/external-login";
+                    //options.Scope.Add("openid");
+                    //options.Scope.Add("profile");
                     options.ResponseType = "code";
-                    options.Scope.Clear();
-                    // Add email scope
-                    options.Scope.Add("email");
                 });
 
             var connectionString = "Data Source=DESKTOP-KSKBKQB\\TOHIDPC; Initial Catalog=ExternalLogin_Db;Integrated Security=true;MultipleActiveResultSets=true";

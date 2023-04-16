@@ -12,6 +12,7 @@ using ExternalLogin.Models.User;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
 namespace ExternalLogin.Controllers
 {
@@ -110,12 +111,12 @@ namespace ExternalLogin.Controllers
 
             //var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
 
-            await HttpContext.ChallengeAsync("Google", new AuthenticationProperties() { RedirectUri = redirectUrl });
+            await HttpContext.ChallengeAsync(provider, new AuthenticationProperties() { RedirectUri = redirectUrl });
         }
 
 
         [Route("external-login", Name = "ExternalLogin")]
-        public IActionResult ExternalLogin()
+        public IActionResult ExternalLogin(object code = null)
         {
             var userEmail = User.FindFirstValue(ClaimTypes.Email);
 
